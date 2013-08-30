@@ -12,7 +12,7 @@ git alias co "checkout"
 
 
 ## configuration
-# prsonal info
+# personal info
 # avoid spam from html parsers
 AT=@
 git config --global user.email "eddy.petrisor${AT}gmail.com"
