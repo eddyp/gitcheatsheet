@@ -2,7 +2,7 @@
 
 
 ## aliases
-git alias br "branch -a -vv"
+git alias br "branch -vv"
 git alias ci "commit  --signoff"
 git alias lg "log --decorate --graph"
 git alias l "log --decorate --graph --oneline"
