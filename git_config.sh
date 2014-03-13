@@ -33,12 +33,16 @@ git config --global pull.ff-only true
 
 # configure Beyond Compare as mergetool (but not set it as default)
 BC="bcompare"
+BCTOOL="bc3"
 BCPATH="$(which ${BC})"
 if [ "$BCPATH" ] ; then
-	git config --global mergetool.${BC}.path "$BCPATH"
-	git config --global mergetool.${BC}.cmd "$BCPATH \"\$PWD/\$LOCAL\" \"\$PWD/\$REMOTE\" \"\$PWD/\$BASE\" \"\$PWD/\$MERGED\""
-	git config --global mergetool.${BC}.keepbackup false
-	git config --global mergetool.${BC}.trustexitcode false
+	git config --global mergetool.${BCTOOL}.path "$BCPATH"
+	git config --global mergetool.${BCTOOL}.cmd "$BCPATH \"\$PWD/\$LOCAL\" \"\$PWD/\$REMOTE\" \"\$PWD/\$BASE\" \"\$PWD/\$MERGED\""
+	git config --global mergetool.${BCTOOL}.keepbackup false
+	git config --global mergetool.${BCTOOL}.trustexitcode false
+
+	git config --global difftool.${BCTOOL}
+
 fi
 
 
