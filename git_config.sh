@@ -46,3 +46,23 @@ if [ "$BCPATH" ] ; then
 fi
 
 
+# configure Semanticmerge as mergetool (but not set it as default)
+SM="semanticmergetool"
+SMTOOL="sm"
+SMPATH="$(which ${SM})"
+if [ -x "$SMPATH" ] ; then
+	git config --global mergetool.${SMTOOL}.path "$SMPATH"
+	# git config --global mergetool.${SMTOOL}.cmd "$SMPATH -s=\"\$LOCAL\" -d=\"\$REMOTE\" -b=\"\$BASE\" -r=\"\$MERGED\" -edt=\"meld\""
+	git config --global mergetool.${SMTOOL}.cmd "$SMPATH -s=\"\$LOCAL\" -d=\"\$REMOTE\" -b=\"\$BASE\" -r=\"\$MERGED\" -edt=default -emt=default -e2mt=default"
+	git config --global mergetool.${SMTOOL}.keepbackup false
+	git config --global mergetool.${SMTOOL}.trustexitcode false
+
+	git config --global mergetool.${SMTOOL}bc3.path "$SMPATH"
+	git config --global mergetool.${SMTOOL}bc3.cmd "$SMPATH -s=\"\$LOCAL\" -d=\"\$REMOTE\" -b=\"\$BASE\" -r=\"\$MERGED\" -edt=\"bcompare \\\"#sourcefile\\\" \\\"#destinationfile\\\" -lefttitle='#sourcesymbolic' -righttitle='#destinationsymbolic'\" -emt=\"bcompare  \\\"#sourcefile\\\" \\\"#destinationfile\\\" \\\"#basefile\\\" \\\"#output\\\" -lefttitle='#sourcesymbolic' -righttitle='#destinationsymbolic' -centertitle='#basesymbolic' -outputtitle='merge result'\" -e2mt=\"bcompare \\\"#sourcefile\\\" \\\"#destinationfile\\\" -savetarget=\\\"#output\\\" -lefttitle='#sourcesymbolic' -righttitle='#destinationsymbolic'\""
+	git config --global mergetool.${SMTOOL}bc3.keepbackup false
+	git config --global mergetool.${SMTOOL}bc3.trustexitcode false
+
+	git config --global difftool.${SMTOOL}.path "$SMPATH"
+	git config --global difftool.${SMTOOL}.cmd "$SMPATH -s=\"\$LOCAL\" -d=\"\$REMOTE\"-edt=\"meld \\\"#sourcefile\\\" \\\"#destinationfile\\\"\" -e2mt=\"meld \\\"#sourcefile\\\" \\\"#destinationfile\\\" \\\"#output\\\""
+fi
+
