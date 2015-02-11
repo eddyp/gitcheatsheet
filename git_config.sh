@@ -1,15 +1,20 @@
 #!/bin/sh
 
+if ! git --version >/dev/null ; then
+	echo "Git not found. Exiting."
+	exit 2
+fi
 
+# older versions of git don't have the alias command
+git alias >/dev/null 2>&1 && GALIAS="alias " || GALIAS="config alias."
 ## aliases
-git alias br "branch -vv"
-git alias ci "commit  --signoff"
-git alias lg "log --decorate --graph"
-git alias l "log --decorate --graph --oneline"
-git alias di diff
-git alias st "status"
-git alias co "checkout"
-
+git ${GALIAS}br "branch -vv"
+git ${GALIAS}ci "commit  --signoff"
+git ${GALIAS}lg "log --decorate --graph"
+git ${GALIAS}l "log --decorate --graph --oneline"
+git ${GALIAS}di diff
+git ${GALIAS}st "status"
+git ${GALIAS}co "checkout"
 
 ## configuration
 # personal info
