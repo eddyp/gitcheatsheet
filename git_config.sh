@@ -6,7 +6,7 @@ if ! git --version >/dev/null ; then
 fi
 
 # older versions of git don't have the alias command
-git alias >/dev/null 2>&1 && GALIAS="alias " || GALIAS="config alias."
+git alias >/dev/null 2>&1 && GALIAS="alias " || GALIAS="config --global alias."
 ## aliases
 git ${GALIAS}br "branch -vv"
 git ${GALIAS}ci "commit  --signoff"
