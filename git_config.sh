@@ -8,12 +8,12 @@ fi
 # older versions of git don't have the alias command
 git alias >/dev/null 2>&1 && GALIAS="alias " || GALIAS="config --global alias."
 ## aliases
-git ${GALIAS}br "branch -vv"
+git ${GALIAS}b "branch -vv"
 git ${GALIAS}ci "commit  --signoff"
 git ${GALIAS}lg "log --decorate --graph"
 git ${GALIAS}l "log --decorate --graph --oneline"
-git ${GALIAS}di diff
-git ${GALIAS}st "status"
+git ${GALIAS}d diff
+git ${GALIAS}s "status"
 git ${GALIAS}co "checkout"
 
 ## configuration
